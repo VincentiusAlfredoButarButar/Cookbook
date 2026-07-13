@@ -18,24 +18,6 @@ Cookbook allows users to save, edit, delete, and search cooking recipes while st
 
 ---
 
-## 📸 Screenshots
-
-### Home Page
-
-<!-- Replace with your screenshot -->
-
-![Home](images/home.png)
-
-### Add Recipe
-
-![Add Recipe](images/add_recipe.png)
-
-### Search Recipe
-
-![Search](images/search.png)
-
----
-
 ## 🛠 Built With
 
 - Flutter
