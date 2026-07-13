@@ -1,17 +1,109 @@
-# Cookbook
+# 🍳 Cookbook
 
-A simple recipe management application built with Flutter, Nylo Framework, and Supabase.
+A simple recipe management mobile application built with **Flutter**, **Nylo Framework**, and **Supabase**.
 
-## Features
+Cookbook allows users to save, edit, delete, and search cooking recipes while storing recipe images in Supabase Storage.
 
-- Create Recipe
-- Update Recipe
-- Delete Recipe
-- Upload Recipe Image
-- Search Recipe by Title
+---
 
-## Technologies
+## 📱 Features
+
+- 📖 View all recipes
+- ➕ Add new recipes
+- ✏️ Edit existing recipes
+- 🗑 Delete recipes
+- 🖼 Upload recipe images
+- 🔍 Search recipes by title
+- ☁️ Cloud database using Supabase
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+
+<!-- Replace with your screenshot -->
+
+![Home](images/home.png)
+
+### Add Recipe
+
+![Add Recipe](images/add_recipe.png)
+
+### Search Recipe
+
+![Search](images/search.png)
+
+---
+
+## 🛠 Built With
 
 - Flutter
+- Dart
 - Nylo Framework
-- Supabase
+- Supabase Database
+- Supabase Storage
+
+---
+
+## 📂 Project Structure
+
+```text
+lib/
+│
+├── app/
+│   ├── controllers/
+│   ├── models/
+│   ├── networking/
+│   └── providers/
+│
+├── resources/
+│   ├── pages/
+│   └── widgets/
+│
+└── main.dart
+```
+
+---
+
+## 🚀 Getting Started
+
+Clone this repository
+
+```bash
+git clone https://github.com/VincentiusAlfredoButarButar/Cookbook.git
+```
+
+Install dependencies
+
+```bash
+flutter pub get
+```
+
+Run the application
+
+```bash
+flutter run
+```
+
+---
+
+## 📌 Main Features
+
+| Feature | Status |
+|---------|--------|
+| Create Recipe | ✅ |
+| Read Recipe | ✅ |
+| Update Recipe | ✅ |
+| Delete Recipe | ✅ |
+| Upload Image | ✅ |
+| Search Recipe | ✅ |
+| Supabase Integration | ✅ |
+
+---
+
+## 👨‍💻 Author
+
+**Vincentius Alfredo Butar Butar**
+
+Computer Science Student
