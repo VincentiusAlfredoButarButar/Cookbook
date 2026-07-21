@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'dart:io';
 import '../../app/controllers/recipe_form_controller.dart';
+import '../widgets/loader_widget.dart';
+import 'dart:async';
 
 class RecipeFormPage extends NyStatefulWidget<RecipeFormController> {
   static RouteView path = ("/recipe-form", (_) => RecipeFormPage());
@@ -11,21 +13,45 @@ class RecipeFormPage extends NyStatefulWidget<RecipeFormController> {
 
 class _RecipeFormPageState extends NyPage<RecipeFormPage> {
   Future<void> _submitAndClose() async {
-    print("STEP 1");
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const Loader(),
+    );
 
-    final result = await widget.controller.submit();
+    try {
+      final result = await widget.controller.submit().timeout(
+        const Duration(seconds: 10),
+      );
 
-    print("STEP 2: $result");
+      if (!mounted) return;
 
-    if (!mounted || result == null) return;
+      Navigator.pop(context); // tutup loading
 
-    print("STEP 3");
-    print("POP START");
+      if (result == null) return;
 
-    Navigator.pop(context, result);
+      Navigator.pop(context, result);
+    } on TimeoutException {
+      if (mounted) {
+        Navigator.pop(context);
 
-    print("POP END");
-    print("STEP 4");
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              "Request timed out.\nPlease check your internet connection.",
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        Navigator.pop(context);
+
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.toString())));
+      }
+    }
   }
 
   Future<void> _deleteRecipe() async {
@@ -125,18 +151,6 @@ class _RecipeFormPageState extends NyPage<RecipeFormPage> {
               onPressed: _deleteRecipe,
               icon: const Icon(Icons.delete_outline, color: Colors.red),
             ),
-
-          TextButton(
-            onPressed: _submitAndClose,
-            child: Text(
-              isEdit ? "Update" : "Save",
-              style: const TextStyle(
-                color: Color(0xff5C6BC0),
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
-          ),
         ],
       ),
 
